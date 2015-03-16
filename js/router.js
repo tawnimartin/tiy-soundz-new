@@ -1,9 +1,11 @@
 var Router = Backbone.Router.extend ({
 
 	routes: {
-		""						 : "loadGenre",
-		"genre/:genre" : "loadGenre",
-		"myplaylist"	 : "myplaylist"
+		""							: "search",
+		//"genre/:genre"  : "loadGenre",
+		"search" 				: "search",
+		"playlist"	 		: "playList",
+		"main-nav"			: "search"
 	},
 
 	initialize: function() {
@@ -11,20 +13,21 @@ var Router = Backbone.Router.extend ({
 		//views
 
 		this.headerView     	= new HeaderView();
+		this.navView 					= new NavView();
 		this.tracks 					= new TrackCollection();
 		this.tracksView 			= new TrackCollectionView({
 			collection: this.tracks
 		});
 		this.searchView 			= new SearchView();
 
+
 		//initial structure
 
 		$(".header").html( this.headerView.render().el );
+		$(".nav").html( this.navView.render().el );
 		$(".main-container").html(this.tracksView.el);
-
 		$(".play-show" ).css( "display", "block" );
 		$(".pause-show" ).css( "display", "none" );
-
 		$(".search").append(this.searchView.render().el);
 
 		//listeners
@@ -37,6 +40,25 @@ var Router = Backbone.Router.extend ({
 			this.search(options.data);
 		});
 
+		this.listenTo(this.navView, "link:click", function(options){
+				switch(options.name) {
+        case "search":
+          this.search(router.searchView.searchkeyword);
+        break;
+        case "playlist":
+          this.playList();
+        break;
+        default:
+          this.loadGenre();
+        break;
+      }
+      this.navigate(options.href);
+    });
+
+	},
+
+	playList: function() {
+		alert("playlist page");
 	},
 
 	loadGenre: function(genre) {
@@ -47,10 +69,15 @@ var Router = Backbone.Router.extend ({
 		}
 	},
 	search: function(query) {
-		if (query === null) {
-			this.tracks.search("yeah yeah yeahs");
+		var searchQuery = router.searchView.searchkeyword;
+		var searchQueryBool = !!searchQuery;
+		var thisQueryBool = !!query;
+		if(searchQueryBool) {
+			this.tracks.search(searchQuery);
+		} else if (thisQueryBool) {
+			this.tracks.search(query);
 		} else {
-		this.tracks.search(query);
+			this.tracks.search("electronic");
 		}
 	}
 });

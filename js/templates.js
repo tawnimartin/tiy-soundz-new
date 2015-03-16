@@ -3,6 +3,10 @@ this["JST"]["header"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"m
     return " <div class=\"view-btns\">\n  	<div class=\"glyph\"><span class=\"glyph-item mega eye\" aria-hidden=\"true\" data-icon=\"&#xe087;\" data-js-prompt=\"&amp;#xe005;\"></span>\n  	</div>\n  	<div class=\"glyph\"><span class=\"glyph-item mega txt\" aria-hidden=\"true\" data-icon=\"&#xe067;\" data-js-prompt=\"&amp;#xe005;\"></span>\n  	</div>\n  </div><div class=\"logo\">SOUNDZ</div>\n  <div class=\"search\">\n  </div>";
 },"useData":true});
 this["JST"] = this["JST"] || {};
+this["JST"]["nav"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "\n  <a data-name=\"search\" href=\"search\"> <div class=\"glyph\"><span class=\"glyph-item mega\" aria-hidden=\"true\" data-icon=\"&#xe090;\" data-js-prompt=\"&amp;#xe005;\"></span></div> Search</a>\n  <a data-name=\"playlist\" href=\"playlist\"> <div class=\"glyph\"><span class=\"glyph-item mega\" aria-hidden=\"true\" data-icon=\"&#xe030;\" data-js-prompt=\"&amp;#xe005;\"></span></div> My Playlist</a>\n";
+},"useData":true});
+this["JST"] = this["JST"] || {};
 this["JST"]["search"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<form>\n      <label>\n       <i class=\"fa fa-search\"></i> <input id=\"search\" type=\"text\" name=\"search\" placeholder=\"search for a song\" />\n      </label>\n   </form>";
 },"useData":true});

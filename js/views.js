@@ -69,10 +69,11 @@ var TrackView = Backbone.View.extend({
   addtoPlaylist: function() {
 
 	  fireCollection 	= new FireCollection();
-		modelid = this.model.id;
-		var o = {}
-	  o["modelid"] = modelid;
-		fireCollection.push(o);
+		// modelid = this.model.id;
+		// var o = {}
+	 //  o["modelid"] = modelid;
+		// fireCollection.push(o);
+		fireCollection.push(this.model);
   },
 
 	buttonClick: function(e) {
@@ -149,12 +150,36 @@ var SearchView = Backbone.View.extend({
 	update: function(e) {
 		e.preventDefault();
 		var data = this.$("form :input").val();
-		console.log(data);
+		//console.log(data);
+		this.searchkeyword = data;
 
 		this.trigger("search:data", {
       data: data
       });
     }
+});
+
+var NavView = Backbone.View.extend({
+	el  				: '.main-nav',
+	events			: {
+    "click a" : "onClick"
+  },
+  template: JST["nav"],
+  render: function() {
+    this.$el.html(this.template());
+    return this;
+  },
+    onClick: function(e) {
+    e.preventDefault();
+    var name = this.$(e.currentTarget).data("name");
+    var href = this.$(e.currentTarget).attr("href");
+
+    this.trigger("link:click", {
+      name: name, 
+      href: href
+      });
+    }
+
 });
 
 var FireView = Backbone.View.extend({
