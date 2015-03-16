@@ -19,6 +19,10 @@ var Router = Backbone.Router.extend ({
 			collection: this.tracks
 		});
 		this.searchView 			= new SearchView();
+		this.fire 						= new FireCollection();
+		this.fireView 				= new FireCollectionView({
+			collection: this.fire
+		});
 
 
 		//initial structure
@@ -29,6 +33,7 @@ var Router = Backbone.Router.extend ({
 		$(".play-show" ).css( "display", "block" );
 		$(".pause-show" ).css( "display", "none" );
 		$(".search").append(this.searchView.render().el);
+		$(".main-container").html(this.tracksView.el);
 
 		//listeners
 
@@ -43,7 +48,7 @@ var Router = Backbone.Router.extend ({
 		this.listenTo(this.navView, "link:click", function(options){
 				switch(options.name) {
         case "search":
-          this.search(router.searchView.searchkeyword);
+          this.searchPage();
         break;
         case "playlist":
           this.playList();
@@ -58,7 +63,9 @@ var Router = Backbone.Router.extend ({
 	},
 
 	playList: function() {
-		alert("playlist page");
+		$(".main-container").empty();
+		$(".search").empty();
+		$(".main-container").html(this.fireView.render().el);
 	},
 
 	loadGenre: function(genre) {
@@ -68,6 +75,14 @@ var Router = Backbone.Router.extend ({
 		this.tracks.loadGenre(genre);
 		}
 	},
+
+	searchPage: function(query) {
+		console.log("searchpage here");
+		$(".search").empty();
+		$(".search").append(this.searchView.render().el);
+		this.search(router.searchView.searchkeyword);
+	},
+
 	search: function(query) {
 		var searchQuery = router.searchView.searchkeyword;
 		var searchQueryBool = !!searchQuery;
@@ -77,7 +92,7 @@ var Router = Backbone.Router.extend ({
 		} else if (thisQueryBool) {
 			this.tracks.search(query);
 		} else {
-			this.tracks.search("electronic");
+			this.tracks.search("electro");
 		}
 	}
 });

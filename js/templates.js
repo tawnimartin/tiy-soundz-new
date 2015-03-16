@@ -7,6 +7,18 @@ this["JST"]["nav"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main
     return "\n  <a data-name=\"search\" href=\"search\"> <div class=\"glyph\"><span class=\"glyph-item mega\" aria-hidden=\"true\" data-icon=\"&#xe090;\" data-js-prompt=\"&amp;#xe005;\"></span></div> Search</a>\n  <a data-name=\"playlist\" href=\"playlist\"> <div class=\"glyph\"><span class=\"glyph-item mega\" aria-hidden=\"true\" data-icon=\"&#xe030;\" data-js-prompt=\"&amp;#xe005;\"></span></div> My Playlist</a>\n";
 },"useData":true});
 this["JST"] = this["JST"] || {};
+this["JST"]["playlist"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    var helper;
+
+  return "<div class=\"playlist\">My Playlist\n	<div>Title : "
+    + this.escapeExpression(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
+    + "</div>\n\n</div>";
+},"useData":true});
+this["JST"] = this["JST"] || {};
+this["JST"]["playlist_collection"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
+    return "<div></div>";
+},"useData":true});
+this["JST"] = this["JST"] || {};
 this["JST"]["search"] = Handlebars.template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     return "<form>\n      <label>\n       <i class=\"fa fa-search\"></i> <input id=\"search\" type=\"text\" name=\"search\" placeholder=\"search for a song\" />\n      </label>\n   </form>";
 },"useData":true});
