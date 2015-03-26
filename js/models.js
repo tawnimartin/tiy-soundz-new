@@ -29,8 +29,9 @@ var Track = Backbone.Model.extend({
 
 });
 
-var TrackCollection = Backbone.Collection.extend({
+//--
 
+var TrackCollection = Backbone.Collection.extend({
 	model: Track,
 
 	loadGenre: function(genre) {
@@ -48,11 +49,13 @@ var TrackCollection = Backbone.Collection.extend({
 
 });
 
+//--
+
 var Fire = Backbone.Model.extend({});
 
 var FireCollection = Backbone.Firebase.Collection.extend({
 	url: "https://tiy-intro-tawni.firebaseio.com/collections/fire",
-	model: Fire
+	model: Track
 });
 
 

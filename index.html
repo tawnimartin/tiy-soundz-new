@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title></title>
+  <title>SOUNDZ SOUNDCLOUD APP</title>
 
   <!-- ==== STYLE SHEETS ==== -->
 
   <!-- VENDOR -->
- <link rel="stylesheet" href="vendor/css/vendor.css">
-  <link href='http://fonts.googleapis.com/css?family=Raleway:400,200,100,300,500,600,700,800,900|Raleway+Dots|Merriweather:400,300,300italic,400italic,700,900,700italic,900italic|Merriweather+Sans:400,300,300italic,400italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="vendor/css/vendor.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic|Raleway:400,100,200,300,500,600,700|Raleway+Dots|Merriweather:400,300italic,300,400italic' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="css/simple-line-icons.css">
 
   <!-- OURS -->
@@ -18,14 +18,15 @@
 
   <!-- VENDOR -->
   <script src="vendor/js/vendor.js"></script>
-   <script src="//connect.soundcloud.com/sdk.js"></script>
+  <script src="vendor/js/big_slide.js"></script>
+  <script src="//connect.soundcloud.com/sdk.js"></script>
   <script>
     SC.initialize({
       client_id: "7137d47761dac4c8eeeecdb1e16dff67",
       redirect_uri: "http://localhost:8000.com/callback.html",
     });
   </script>
-
+  
 
   <!-- TEMPLATES -->
   <script src="js/templates.js"></script>
@@ -37,34 +38,39 @@
   <script src="js/main.js"></script>
 </head>
 <body>
-<!-- drawer nav -->
-<nav class="main-nav" id="main-nav">
-</nav>
-<!-- /drawer nav -->
-<div class="page-wrap">
-
-  <header class="main-header">
-    <a href="#main-nav" class="open-menu">
-      <i class="fa fa-bars"></i>
-    </a>
-    <a href="#" class="close-menu">
-      <i class="fa fa-bars"></i>
-    </a>
-    
-  
-  </header>
-  
+<script>
+//for the nav
+    $(document).ready(function() {
+      //menu
+      $('.menu-link').bigSlide();
+      //clears the other field when one is clicked
+      $( "input[name='search-keyword']" ).click(
+          function(){
+          $( "input[name='search-genre']" ).val('');
+      });
+      $( "input[name='search-genre']" ).click(
+          function(){
+      $( "input[name='search-keyword']" ).val('');
+      });
+    });
+</script>
+<div class="content push">
+    <!-- nav stuff -->
+    <a href="#" class="menu-link"><i class="fa fa-bars"></i></a>
+      
+    <nav id="menu" class="panel" role="navigation">
+ 
+    </nav>
+  <!-- /nav stuff -->
+  <!-- -->
   <div class="content">
-
-  <!-- site content -->
-  <div class="header">
-  </div>
+    <div class="header">
+    </div>
+  <!-- /header-->
   <div class="main-container">
+
   </div>
-  <!-- /site content -->
-        
-  </div>
-  
+</div>
 </div>
 </body>
 </html>
